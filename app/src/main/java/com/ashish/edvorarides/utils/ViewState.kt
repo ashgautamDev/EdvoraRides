@@ -1,24 +1,26 @@
 package com.ashish.mygithub.utils
 
-import com.ashish.mygithub.data.api.GithubRepoResponse
-import com.ashish.mygithub.data.model.GithubRepo
-import com.ashish.mygithub.data.model.branch.Commit
+import com.ashish.edvorarides.data.api.RidesResponse
+import com.ashish.edvorarides.data.model.User
 
 
-sealed class ViewStateCommits {
+sealed class UserViewState {
 
 
     // It Represents different states
-    object Empty : ViewStateCommits()
-    object Loading : ViewStateCommits()
-    data class Success(val result : List<Commit>) : ViewStateCommits()
-    data class Error(val exception: Throwable) : ViewStateCommits()
+    object Empty : UserViewState()
+    object Loading : UserViewState()
+    data class Success(val result: User) : UserViewState()
+    data class Error(val exception: Throwable) : UserViewState()
 }
 
-sealed class GithubRepoState{
-// It Represents different states of starting Screen
-object Empty : GithubRepoState() // There is Add Button
-object Loading : GithubRepoState() // There is Loading Bar at middle
-data class Success(val result : GithubRepoResponse) : GithubRepoState() // at this state we we have a repo card
-data class Error(val exception: Throwable) : GithubRepoState() // this state shows the error for Toast message
+sealed class EdvoraViewState {
+    // It Represents different states of Rides state
+    object Empty : EdvoraViewState() // There is Add Button
+    object Loading : EdvoraViewState() // There is Loading Bar at middle
+    data class Success(val result: RidesResponse) :
+        EdvoraViewState() // at this state we we have a Rides card
+
+    data class Error(val exception: Throwable) :
+        EdvoraViewState() // this state shows the error for Toast message
 }
