@@ -15,7 +15,7 @@ import com.ashish.edvorarides.data.model.User
 import com.ashish.edvorarides.utils.LoadingNetworkImage
 
 @Composable
-fun TopAppBar(user: User) {
+fun TopBar(user: User) {
     Row(
         modifier = Modifier
             .height(70.dp)

@@ -8,4 +8,7 @@ interface EdvoraApi {
     @GET("/user")
     suspend fun getUser() : User
 
+    @GET("/rides")
+    suspend fun getAllRides() : RidesResponse
+
 }

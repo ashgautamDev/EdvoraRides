@@ -75,6 +75,14 @@ implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 //Dagger hilt
 implementation "com.google.dagger:hilt-android:$hilt_version"
 kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    def lifecycle_version = "2.5.0-alpha04"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+//    // Dagger Hilt
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+//    kapt "androidx.hilt:hilt-compiler:1.0.0"
+//    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+//    implementation "androidx.hilt:hilt-common:$hilt_version"
+
 
 
 implementation("androidx.hilt:hilt-work:1.0.0")

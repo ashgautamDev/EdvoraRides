@@ -12,3 +12,4 @@ val Teal200 = Color(0xFF03DAC5)
 
 val textColor = Color(0xFFffffff)
 val textLight = Color(0xFF)
+val backgroundColor = Color(0xFF292929)

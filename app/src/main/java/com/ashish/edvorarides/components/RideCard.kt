@@ -2,24 +2,22 @@ package com.ashish.edvorarides.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ashish.edvorarides.data.model.RidesItem
+import com.ashish.edvorarides.data.model.Rides
 import com.ashish.edvorarides.utils.LoadingNetworkImage
 
 @Composable
-fun RideCard(ridesItem: RidesItem) {
+fun RideCard(ridesItem: Rides) {
     val distance = 0
+    val stationPath = ridesItem.station_path.toString()
 
     Column(modifier = Modifier
         .heightIn(max = 430.dp)
@@ -28,19 +26,21 @@ fun RideCard(ridesItem: RidesItem) {
             shape = RoundedCornerShape(10.dp)
         )
         .padding(27.dp)) {
-        LoadingNetworkImage(
-            url = ridesItem.map_url,
-            Modifier
-                .height(148.dp)
-                .fillMaxWidth()
-                .background(shape = RoundedCornerShape(5.dp), color = Color.Gray)
-        )
+        ridesItem.map_url?.let {
+            LoadingNetworkImage(
+                url = it,
+                Modifier
+                    .height(148.dp)
+                    .fillMaxWidth()
+                    .background(shape = RoundedCornerShape(5.dp), color = Color.Gray)
+            )
+        }
 
         Spacer(modifier = Modifier.height(17.dp))
 
         Row(horizontalArrangement = Arrangement.SpaceBetween) {
-            ChipCard(ridesItem.city)
-            ChipCard(ridesItem.state)
+            ridesItem.city?.let { ChipCard(it) }
+            ridesItem.state?.let { ChipCard(it) }
         }
         Spacer(modifier = Modifier.height(16.dp))
         TextItem(title = "Ride Id", value = ridesItem.id.toString())
@@ -49,7 +49,7 @@ fun RideCard(ridesItem: RidesItem) {
         Spacer(modifier = Modifier.height(12.dp))
         TextItem(title = "station_path", value = ridesItem.station_path.toString())
         Spacer(modifier = Modifier.height(12.dp))
-        TextItem(title = "Date", value = ridesItem.date)
+        ridesItem.date?.let { TextItem(title = "Date", value = it) }
         Spacer(modifier = Modifier.height(12.dp))
         TextItem(title = "Distance", value = distance.toString() )
 
